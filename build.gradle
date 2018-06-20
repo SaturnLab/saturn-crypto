@@ -1,0 +1,31 @@
+group 'io.saturnlab'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    slf4jVersion = '1.7.7'
+    leveldbVersion = '0.7'
+    scastleVersion = '1.53.0.0'
+    junitVersion = '4.11'
+}
+
+
+dependencies {
+    testCompile "junit:junit:${junitVersion}"
+    compile "com.madgag.spongycastle:core:${scastleVersion}" // for SHA3 and SECP256K1
+    compile "com.madgag.spongycastle:prov:${scastleVersion}" // for SHA3 and SECP256K1
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.apache.commons:commons-collections4:4.0"
+    compile "org.apache.commons:commons-lang3:3.4"
+    compile "commons-codec:commons-codec:1.10"
+    compile "com.googlecode.concurrent-locks:concurrent-locks:1.0.0"
+    compile "com.google.code.findbugs:jsr305:3.0.0"
+    compile "com.cedarsoftware:java-util:1.8.0"
+}
