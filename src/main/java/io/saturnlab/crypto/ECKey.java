@@ -415,7 +415,7 @@ public class ECKey implements Serializable {
    * @return 20-byte address
    */
   public static byte[] computeAddress(byte[] pubBytes) {
-    return CrytoUtil.sha3omit12(
+    return HashUtil.sha3omit12(
         Arrays.copyOfRange(pubBytes, 1, pubBytes.length));
   }
 
@@ -667,8 +667,8 @@ public class ECKey implements Serializable {
     public String toBase64() {
       byte[] sigData = new byte[65];  // 1 header + 32 bytes for R + 32 bytes for S
       sigData[0] = v;
-      System.arraycopy(CrytoUtil.bigIntegerToBytes(this.r, 32), 0, sigData, 1, 32);
-      System.arraycopy(CrytoUtil.bigIntegerToBytes(this.s, 32), 0, sigData, 33, 32);
+      System.arraycopy(HashUtil.bigIntegerToBytes(this.r, 32), 0, sigData, 1, 32);
+      System.arraycopy(HashUtil.bigIntegerToBytes(this.s, 32), 0, sigData, 33, 32);
       return new String(Base64.encode(sigData), Charset.forName("UTF-8"));
     }
 
@@ -677,9 +677,9 @@ public class ECKey implements Serializable {
           ? (byte) (this.v - 27)
           :this.v;
 
-      return CrytoUtil.merge(
-          CrytoUtil.bigIntegerToBytes(this.r),
-          CrytoUtil.bigIntegerToBytes(this.s),
+      return HashUtil.merge(
+          HashUtil.bigIntegerToBytes(this.r),
+          HashUtil.bigIntegerToBytes(this.s),
           new byte[]{fixedV});
     }
 

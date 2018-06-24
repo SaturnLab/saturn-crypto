@@ -1,7 +1,6 @@
 
 package io.saturnlab.crypto.cryptohash;
 
-import io.saturnlab.crypto.cryptohash.Digest;
 import org.spongycastle.util.encoders.Hex;
 
 import static org.junit.Assert.*;
